@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFC Classes - MFC Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header will be injected here by script.js -->
+
+    <!-- Layout Container (sidebar will be injected here) -->
+    <div class="layout-container">
+        <!-- Main Content -->
+        <main class="content">
+            <h1>MFC Classes</h1>
+
+            <p>MFC provides a comprehensive set of C++ classes that wrap Windows API functionality. Understanding these classes is essential for effective MFC development.[web:2][web:4]</p>
+
+            <h2>Core Application Classes</h2>
+
+            <h3>CWinApp - Application Class</h3>
+            <p>The foundation of every MFC application. Manages application initialization, message loop, and cleanup.[web:4]</p>
+
+            <div class="code-box">
+<pre>
+class CMyApp : public CWinApp {
+public:
+    virtual BOOL InitInstance();
+    virtual int ExitInstance();
+};
+</pre>
+            </div>
+
+            <p><strong>Key Responsibilities:</strong></p>
+            <ul>
+                <li>Application startup and shutdown</li>
+                <li>Message pump management</li>
+                <li>Document template registration</li>
+                <li>Command-line processing</li>
+            </ul>
+
+            <h3>CWnd - Base Window Class</h3>
+            <p>The base class for all window objects in MFC. Provides core windowing functionality.[web:2]</p>
+
+            <p><strong>Common Methods:</strong></p>
+            <ul>
+                <li><code>Create()</code> - Creates the window</li>
+                <li><code>ShowWindow()</code> - Shows or hides the window</li>
+                <li><code>UpdateWindow()</code> - Redraws the window</li>
+                <li><code>GetDlgItem()</code> - Gets a child control</li>
+                <li><code>SetWindowText()</code> - Sets window title</li>
+            </ul>
+
+            <h3>CFrameWnd - Frame Window Class</h3>
+            <p>Represents the main window frame in SDI and MDI applications.[web:4]</p>
+
+            <div class="code-box">
+<pre>
+class CMainFrame : public CFrameWnd {
+public:
+    CMainFrame();
+    virtual ~CMainFrame();
+protected:
+    CToolBar m_wndToolBar;
+    CStatusBar m_wndStatusBar;
+};
+</pre>
+            </div>
+
+            <p><strong>Features:</strong></p>
+            <ul>
+                <li>Contains toolbar, status bar, and view</li>
+                <li>Handles menu commands</li>
+                <li>Manages docking panes</li>
+                <li>Controls window layout</li>
+            </ul>
+
+            <h2>Dialog Classes</h2>
+
+            <h3>CDialog - Dialog Box Class</h3>
+            <p>Base class for creating dialog boxes, both modal and modeless.[web:6]</p>
+
+            <div class="code-box">
+<pre>
+class CMyDialog : public CDialog {
+public:
+    CMyDialog(CWnd* pParent = NULL);
+    enum { IDD = IDD_MY_DIALOG };
+    
+    virtual BOOL OnInitDialog();
+    afx_msg void OnOK();
+    afx_msg void OnCancel();
+};
+</pre>
+            </div>
+
+            <p><strong>Common Usage:</strong></p>
+            <ul>
+                <li><code>DoModal()</code> - Display modal dialog</li>
+                <li><code>Create()</code> - Create modeless dialog</li>
+                <li><code>OnInitDialog()</code> - Initialize dialog controls</li>
+                <li><code>UpdateData()</code> - Exchange data with controls</li>
+            </ul>
+
+            <h3>CDialogEx - Extended Dialog Class</h3>
+            <p>Enhanced version of CDialog with additional features:[web:6]</p>
+            <ul>
+                <li>DPI scaling support</li>
+                <li>Modern visual styles</li>
+                <li>Ribbon integration</li>
+                <li>Better theming support</li>
+            </ul>
+
+            <h2>View Classes</h2>
+
+            <h3>CView - Base View Class</h3>
+            <p>Displays document data and handles user input in Document/View applications.[web:10]</p>
+
+            <div class="code-box">
+<pre>
+class CMyView : public CView {
+public:
+    virtual void OnDraw(CDC* pDC);
+    virtual void OnInitialUpdate();
+    
+    CMyDoc* GetDocument() const;
+};
+</pre>
+            </div>
+
+            <h3>Specialized View Classes</h3>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Class</th>
+                    <th>Purpose</th>
+                    <th>Use Case</th>
+                </tr>
+                <tr>
+                    <td><strong>CScrollView</strong></td>
+                    <td>View with scrolling support</td>
+                    <td>Large documents, drawings</td>
+                </tr>
+                <tr>
+                    <td><strong>CFormView</strong></td>
+                    <td>Form-based view with controls</td>
+                    <td>Data entry, forms</td>
+                </tr>
+                <tr>
+                    <td><strong>CEditView</strong></td>
+                    <td>Simple text editor</td>
+                    <td>Text editing applications</td>
+                </tr>
+                <tr>
+                    <td><strong>CListView</strong></td>
+                    <td>List control view</td>
+                    <td>List displays</td>
+                </tr>
+                <tr>
+                    <td><strong>CTreeView</strong></td>
+                    <td>Tree control view</td>
+                    <td>Hierarchical data</td>
+                </tr>
+            </table>
+
+            <h2>Document Class</h2>
+
+            <h3>CDocument - Document Data Class</h3>
+            <p>Manages application data in Document/View architecture.[web:10]</p>
+
+            <div class="code-box">
+<pre>
+class CMyDoc : public CDocument {
+public:
+    virtual BOOL OnNewDocument();
+    virtual void Serialize(CArchive& ar);
+    virtual void DeleteContents();
+};
+</pre>
+            </div>
+
+            <p><strong>Key Methods:</strong></p>
+            <ul>
+                <li><code>Serialize()</code> - Save/load document data</li>
+                <li><code>SetModifiedFlag()</code> - Mark document as changed</li>
+                <li><code>UpdateAllViews()</code> - Notify views of changes</li>
+                <li><code>OnOpenDocument()</code> - Open existing document</li>
+            </ul>
+
+            <h2>Control Classes</h2>
+
+            <p>MFC provides wrapper classes for standard Windows controls:[web:2]</p>
+
+            <h3>Basic Controls</h3>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Class</th>
+                    <th>Control Type</th>
+                    <th>Common Methods</th>
+                </tr>
+                <tr>
+                    <td><strong>CButton</strong></td>
+                    <td>Push button, radio, checkbox</td>
+                    <td>SetCheck(), GetCheck()</td>
+                </tr>
+                <tr>
+                    <td><strong>CEdit</strong></td>
+                    <td>Text edit box</td>
+                    <td>SetWindowText(), GetWindowText()</td>
+                </tr>
+                <tr>
+                    <td><strong>CStatic</strong></td>
+                    <td>Static text or image</td>
+                    <td>SetWindowText(), SetBitmap()</td>
+                </tr>
+                <tr>
+                    <td><strong>CComboBox</strong></td>
+                    <td>Combo box dropdown</td>
+                    <td>AddString(), GetCurSel()</td>
+                </tr>
+                <tr>
+                    <td><strong>CListBox</strong></td>
+                    <td>List box</td>
+                    <td>AddString(), GetSelItems()</td>
+                </tr>
+            </table>
+
+            <h3>Advanced Controls</h3>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Class</th>
+                    <th>Control Type</th>
+                    <th>Use Case</th>
+                </tr>
+                <tr>
+                    <td><strong>CListCtrl</strong></td>
+                    <td>List view control</td>
+                    <td>File lists, data grids</td>
+                </tr>
+                <tr>
+                    <td><strong>CTreeCtrl</strong></td>
+                    <td>Tree view control</td>
+                    <td>Hierarchical data</td>
+                </tr>
+                <tr>
+                    <td><strong>CProgressCtrl</strong></td>
+                    <td>Progress bar</td>
+                    <td>Operation progress</td>
+                </tr>
+                <tr>
+                    <td><strong>CSliderCtrl</strong></td>
+                    <td>Slider control</td>
+                    <td>Value adjustment</td>
+                </tr>
+                <tr>
+                    <td><strong>CSpinButtonCtrl</strong></td>
+                    <td>Spin (up/down) control</td>
+                    <td>Numeric increment</td>
+                </tr>
+                <tr>
+                    <td><strong>CTabCtrl</strong></td>
+                    <td>Tab control</td>
+                    <td>Tabbed interfaces</td>
+                </tr>
+            </table>
+
+            <h2>Utility Classes</h2>
+
+            <h3>CString - String Handling</h3>
+            <p>MFC's string class for easy text manipulation:[web:2]</p>
+
+            <div class="code-box">
+<pre>
+CString str = "Hello";
+str += " World";
+str.MakeUpper();  // "HELLO WORLD"
+int len = str.GetLength();
+CString sub = str.Mid(0, 5);  // "HELLO"
+</pre>
+            </div>
+
+            <h3>CFile - File Operations</h3>
+            <p>Handles file input/output operations:[web:4]</p>
+
+            <div class="code-box">
+<pre>
+CFile file;
+if (file.Open("data.txt", CFile::modeRead)) {
+    char buffer[256];
+    UINT bytesRead = file.Read(buffer, 256);
+    file.Close();
+}
+</pre>
+            </div>
+
+            <h3>CRect - Rectangle Operations</h3>
+            <p>Manages rectangular regions:</p>
+
+            <div class="code-box">
+<pre>
+CRect rect(0, 0, 100, 50);
+rect.OffsetRect(10, 10);
+BOOL isEmpty = rect.IsRectEmpty();
+rect.InflateRect(5, 5);
+</pre>
+            </div>
+
+            <h3>CPoint and CSize</h3>
+            <p>Represent points and dimensions:</p>
+
+            <div class="code-box">
+<pre>
+CPoint pt(10, 20);
+CSize sz(100, 50);
+CRect rect(pt, sz);
+</pre>
+            </div>
+
+            <h2>Collection Classes</h2>
+
+            <p>MFC provides type-safe collection classes:[web:4]</p>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Class</th>
+                    <th>Type</th>
+                    <th>Use Case</th>
+                </tr>
+                <tr>
+                    <td><strong>CArray</strong></td>
+                    <td>Dynamic array</td>
+                    <td>Ordered collection with index access</td>
+                </tr>
+                <tr>
+                    <td><strong>CList</strong></td>
+                    <td>Linked list</td>
+                    <td>Frequent insertions/deletions</td>
+                </tr>
+                <tr>
+                    <td><strong>CMap</strong></td>
+                    <td>Hash map</td>
+                    <td>Key-value pairs</td>
+                </tr>
+                <tr>
+                    <td><strong>CStringArray</strong></td>
+                    <td>Array of strings</td>
+                    <td>String collections</td>
+                </tr>
+            </table>
+
+            <h2>Graphics Classes</h2>
+
+            <h3>CDC - Device Context</h3>
+            <p>Handles all drawing operations:[web:4]</p>
+
+            <div class="code-box">
+<pre>
+void CMyView::OnDraw(CDC* pDC) {
+    pDC->TextOut(10, 10, "Hello MFC");
+    pDC->MoveTo(0, 0);
+    pDC->LineTo(100, 100);
+    pDC->Rectangle(20, 20, 80, 60);
+}
+</pre>
+            </div>
+
+            <h3>Graphics Helper Classes</h3>
+            <ul>
+                <li><strong>CPen</strong> - Drawing lines and shapes</li>
+                <li><strong>CBrush</strong> - Filling areas</li>
+                <li><strong>CFont</strong> - Text rendering</li>
+                <li><strong>CBitmap</strong> - Image handling</li>
+            </ul>
+
+            <h2>Message Map Macros</h2>
+
+            <p>MFC uses message maps to handle Windows messages:[web:4]</p>
+
+            <div class="code-box">
+<pre>
+BEGIN_MESSAGE_MAP(CMyDialog, CDialog)
+    ON_BN_CLICKED(IDC_BUTTON1, &CMyDialog::OnButton1)
+    ON_WM_PAINT()
+    ON_WM_TIMER()
+    ON_COMMAND(ID_FILE_OPEN, &CMyDialog::OnFileOpen)
+END_MESSAGE_MAP()
+</pre>
+            </div>
+
+            <h2>Common Message Handlers</h2>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Macro</th>
+                    <th>Message Type</th>
+                    <th>Handler Example</th>
+                </tr>
+                <tr>
+                    <td>ON_BN_CLICKED</td>
+                    <td>Button click</td>
+                    <td>OnButtonClicked()</td>
+                </tr>
+                <tr>
+                    <td>ON_WM_PAINT</td>
+                    <td>Window redraw</td>
+                    <td>OnPaint()</td>
+                </tr>
+                <tr>
+                    <td>ON_WM_TIMER</td>
+                    <td>Timer event</td>
+                    <td>OnTimer()</td>
+                </tr>
+                <tr>
+                    <td>ON_COMMAND</td>
+                    <td>Menu/toolbar command</td>
+                    <td>OnFileOpen()</td>
+                </tr>
+                <tr>
+                    <td>ON_UPDATE_COMMAND_UI</td>
+                    <td>UI state update</td>
+                    <td>OnUpdateFileSave()</td>
+                </tr>
+            </table>
+
+            <div class="info-box tip">
+                <strong>💡 Quick Reference:</strong> Most MFC classes start with 'C' (CWinApp, CDialog, CString). This naming convention makes MFC classes easy to identify in code.
+            </div>
+
+            <h2>Class Hierarchy Overview</h2>
+
+            <div class="code-box">
+<pre>
+CObject (root class)
+├── CCmdTarget
+│   ├── CWinThread
+│   │   └── CWinApp
+│   ├── CWnd
+│   │   ├── CFrameWnd
+│   │   ├── CDialog / CDialogEx
+│   │   ├── CView
+│   │   └── Control classes
+│   └── CDocument
+├── CFile
+├── CString
+└── Collection classes
+</pre>
+            </div>
+
+            <div class="button-container">
+                <a href="document-view.html" class="btn-primary">Next: Document/View Architecture →</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

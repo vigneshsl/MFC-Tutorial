@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interview Questions – MFC Tutorial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header will be injected here by script.js -->
+  
+  <!-- Layout Container (sidebar will be injected here) -->
+  <div class="layout-container">
+    <main class="content">
+      <h1>MFC Interview Questions</h1>
+      <p>These common interview questions cover core MFC concepts for 3-year experience level.</p>
+
+      <h2>Basics</h2>
+      <ul>
+        <li><b>Q1:</b> What is MFC?<br>A: C++ library for Windows GUI applications, wraps Win32 API.</li>
+        <li><b>Q2:</b> Why use MFC?<br>A: Faster Windows app development, simplifies dialogs, controls, menus.</li>
+        <li><b>Q3:</b> Which language is used in MFC?<br>A: C++.</li>
+        <li><b>Q4:</b> Is MFC still used today? Why?<br>A: Yes, in legacy, industrial, and automation apps.</li>
+      </ul>
+      <h2>MFC Classes</h2>
+      <ul>
+        <li><b>Q5:</b> What is CWinApp?<br>A: Main application class, handles initialization.</li>
+        <li><b>Q6:</b> What is CWnd?<br>A: Base class for all windows and controls.</li>
+        <li><b>Q7:</b> What is CDialog?<br>A: For creating dialog windows/forms.</li>
+        <li><b>Q8:</b> What is CString?<br>A: String manipulation class in MFC.</li>
+        <li><b>Q9:</b> Name some common MFC controls.<br>A: CButton, CEdit, CListCtrl, CTreeCtrl.</li>
+      </ul>
+      <h2>App Types & Architecture</h2>
+      <ul>
+        <li><b>Q10:</b> What types of MFC applications exist?<br>A: Dialog-based, SDI, MDI.</li>
+        <li><b>Q11:</b> Easiest type to create?<br>A: Dialog-based.</li>
+        <li><b>Q12:</b> What is SDI? MDI?<br>A: SDI = Single document, MDI = Multiple documents at once.</li>
+        <li><b>Q13:</b> When would you use Document/View?<br>A: When app manages data/files, needs printing, multiple views.</li>
+      </ul>
+      <h2>Message Maps & Windows Handling</h2>
+      <ul>
+        <li><b>Q14:</b> What is a message map?<br>A: Mechanism mapping messages (like button clicks) to handler functions.</li>
+        <li><b>Q15:</b> How to handle button click?<br>A: Use ON_BN_CLICKED macro in message map, define handler.</li>
+        <li><b>Q16:</b> What is ON_COMMAND?<br>A: Used for handling menu and command messages.</li>
+        <li><b>Q17:</b> How does MFC help with window messages?<br>A: MFC routes and wraps messages in its class structure.</li>
+      </ul>
+      <h2>Dialogs & Controls</h2>
+      <ul>
+        <li><b>Q18:</b> How show a message box?<br>A: Use AfxMessageBox(L"message");</li>
+        <li><b>Q19:</b> Show a dialog box modally?<br>A: Create CDialog instance, call DoModal().</li>
+        <li><b>Q20:</b> Difference: CDialog vs. CDialogEx?<br>A: CDialogEx supports modern UI (ribbons, high DPI), CDialog is basic.</li>
+      </ul>
+      <h2>Document/View Patterns</h2>
+      <ul>
+        <li><b>Q21:</b> What is serialization?<br>A: Automatic data save/load, usually in CDocument::Serialize().</li>
+        <li><b>Q22:</b> How to update all views on data change?<br>A: Call CDocument's UpdateAllViews().</li>
+        <li><b>Q23:</b> How to mark document as modified?<br>A: Use SetModifiedFlag().</li>
+      </ul>
+      <h2>Real-world Scenarios & System Support</h2>
+      <ul>
+        <li><b>Q24:</b> How to read/write files?<br>A: Use CFile, CStdioFile, or serialization.</li>
+        <li><b>Q25:</b> How to add a new thread?<br>A: Use AfxBeginThread().</li>
+        <li><b>Q26:</b> Can MFC handle networking?<br>A: Yes, with CSocket class (TCP/UDP).</li>
+        <li><b>Q27:</b> How to store app settings?<br>A: CWinApp::GetProfileString()/WriteProfileString() uses registry/profile files.</li>
+      </ul>
+      <h2>Deployment, Legacy & UI</h2>
+      <ul>
+        <li><b>Q28:</b> How to deploy MFC apps?<br>A: Use shared DLL for smaller EXE, static library if target PC lacks MFC DLLs.</li>
+        <li><b>Q29:</b> Why do companies keep old MFC systems?<br>A: Stability, reliability, easier maintenance for existing code.</li>
+        <li><b>Q30:</b> How to modify UI quickly?<br>A: Use resource editors in Visual Studio.</li>
+      </ul>
+
+      <footer class="page-footer">
+        <p class="footer-quote">கற்றது கைமண் அளவு, கல்லாதது உலகளவு.</p>
+        <p class="footer-credit">Tutorial Created for: Vignesh S.L.</p>
+      </footer>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

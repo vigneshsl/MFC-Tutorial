@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Support – MFC Tutorial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header will be injected here by script.js -->
+
+  <div class="layout-container">
+    <main class="content">
+      <h1>System-Level Support in MFC</h1>
+
+      <h2>Key System Features</h2>
+      <ul>
+        <li><strong>File I/O</strong>
+          <ul>
+            <li>Read/write files easily using <code>CFile</code>, <code>CStdioFile</code>, <code>Serialize</code></li>
+            <li>Automatic file open/save dialogs (Document/View)</li>
+          </ul>
+        </li>
+        <li><strong>Threading and Synchronization</strong>
+          <ul>
+            <li>Create threads with <code>CWinThread</code></li>
+            <li>Synchronization primitives: <code>CCriticalSection</code>, <code>CEvent</code></li>
+            <li>Useful for background tasks, timers</li>
+          </ul>
+        </li>
+        <li><strong>Networking</strong>
+          <ul>
+            <li>Socket communication with <code>CSocket</code></li>
+            <li>TCP/UDP clients and servers (e.g., for process monitoring)</li>
+          </ul>
+        </li>
+        <li><strong>Windows Registry Handling</strong>
+          <ul>
+            <li>Read/write registry values using <code>CWinApp::GetProfileString()</code> and <code>CWinApp::WriteProfileString()</code></li>
+            <li>Store settings and preferences</li>
+          </ul>
+        </li>
+        <li><strong>Serialization</strong>
+          <ul>
+            <li>Automatic saving/loading of complex data structures</li>
+            <li>Use <code>Serialize</code> methods inside <code>CDocument</code></li>
+          </ul>
+        </li>
+        <li><strong>COM/OLE Integration</strong>
+          <ul>
+            <li>Embed other applications (Excel, Word) or act as an OLE server</li>
+            <li>Legacy feature, not common in modern apps</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2>Example: File I/O</h2>
+      <pre class="code-box">
+CFile file;
+if (file.Open("data.txt", CFile::modeRead)) {
+  char buffer[256];
+  UINT bytesRead = file.Read(buffer, 256);
+  file.Close();
+}
+      </pre>
+
+      <h2>Example: Threading</h2>
+      <pre class="code-box">
+AfxBeginThread(MyThreadFn, pParam); // Start a new thread
+      </pre>
+
+      <h2>Example: Networking</h2>
+      <pre class="code-box">
+CSocket sock;
+sock.Create();
+sock.Connect("127.0.0.1", 12345); // Connect to server
+      </pre>
+
+      <div class="info-box tip">
+        <strong>Tip:</strong> MFC classes handle many system-level details so you can focus on application logic, not low-level Windows API calls.
+      </div>
+
+      <div class="button-container">
+        <a href="mcq.html" class="btn-primary">Next: MCQs →</a>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

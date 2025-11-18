@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI Elements – MFC Tutorial</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header will be injected here by script.js -->
+
+  <div class="layout-container">
+    <main class="content">
+      <h1>User Interface Elements in MFC</h1>
+
+      <div class="info-box note">
+        <strong>Note:</strong> MFC provides many ready-to-use UI elements for building Windows applications quickly[1].
+      </div>
+
+      <h2>Main UI Elements</h2>
+      <ul>
+        <li><strong>Windows & Dialog Boxes</strong> – Main windows, child windows, pop-up dialogs</li>
+        <li><strong>Menus</strong> – Standard drop-down or context menus</li>
+        <li><strong>Toolbars</strong> – Icon button bars for quick actions</li>
+        <li><strong>Status Bars</strong> – Bottom information areas[1]</li>
+        <li><strong>Control Bars</strong> – Dockable panels/widgets (e.g., tool panels)</li>
+        <li><strong>Tool Tips</strong> – Descriptive hints on hover</li>
+        <li><strong>Common Controls</strong>:
+          <ul>
+            <li>Buttons (<code>CButton</code>)</li>
+            <li>Edit boxes (<code>CEdit</code>)</li>
+            <li>List/Tree views (<code>CListCtrl</code>, <code>CTreeCtrl</code>)</li>
+            <li>Combo lists, progress bars, sliders, tabs</li>
+          </ul>
+        </li>
+        <li><strong>Ribbon Bars</strong> – Modern Microsoft Office-style toolbars</li>
+        <li><strong>Docking Panes & Splitters</strong> – Moveable, resizable interface panes</li>
+        <li><strong>Visualization Manager</strong> – Centralizes drawing and theming</li>
+      </ul>
+
+      <h2>Typical MFC UI Structure</h2>
+      <ul>
+        <li>Main Window (<code>CMainFrame</code>)</li>
+        <li>Child windows, usually <code>CView</code> or dialogs</li>
+        <li>Menus and toolbars</li>
+        <li>Status bar at the bottom</li>
+      </ul>
+
+      <h2>How UI Elements Help</h2>
+      <div class="info-box tip">
+        <strong>Tip:</strong> You don’t have to create everything from scratch.
+        Placing controls and bars is easy with Visual Studio’s resource editors[2].
+      </div>
+
+      <h2>Example: Adding a Toolbar</h2>
+      <pre class="code-box">
+int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
+  m_wndToolBar.CreateEx(this);
+  m_wndToolBar.LoadToolBar(IDR_MAINFRAME);
+  m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
+  EnableDocking(CBRS_ALIGN_ANY);
+  DockControlBar(&m_wndToolBar);
+  return 0;
+}
+      </pre>
+
+      <h2>Visual Styles</h2>
+      <ul>
+        <li><strong>Classic</strong>: Menu bar, toolbars, status bar</li>
+        <li><strong>Modern</strong>: Ribbon UI (Office), visual managers enable advanced look (themes, colors)</li>
+      </ul>
+
+      <div class="button-container">
+        <a href="system-support.html" class="btn-primary">Next: System Support →</a>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MFC Wizard Options - MFC Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header will be injected here by script.js -->
+
+    <!-- Layout Container (sidebar will be injected here) -->
+    <div class="layout-container">
+        <!-- Main Content -->
+        <main class="content">
+            <h1>MFC Wizard Options Explained</h1>
+
+            <p>The MFC Application Wizard presents several configuration screens. Understanding each option helps you create the right type of application for your needs.</p>
+
+            <h2>Application Type</h2>
+
+            <p>The first major decision is choosing your application type:</p>
+
+            <h3>Dialog-based</h3>
+            <ul>
+                <li>Shows a single dialog window</li>
+                <li>Easiest type to create and understand</li>
+                <li>Perfect for tools, utilities, and configuration screens</li>
+                <li>No Document/View architecture</li>
+            </ul>
+
+            <h3>Single Document Interface (SDI)</h3>
+            <ul>
+                <li>Opens one document at a time</li>
+                <li>Similar to Notepad</li>
+                <li>Uses Document/View architecture</li>
+                <li>Good for single-file editors</li>
+            </ul>
+
+            <h3>Multiple Document Interface (MDI)</h3>
+            <ul>
+                <li>Can open multiple child windows inside main window</li>
+                <li>Similar to older versions of Excel or Photoshop</li>
+                <li>Uses Document/View architecture</li>
+                <li>Good for applications handling multiple documents simultaneously</li>
+            </ul>
+
+            <div class="info-box note">
+                <strong>📌 Beginner Recommendation:</strong> Start with Dialog-based for simple apps, or SDI if you need file handling capabilities.
+            </div>
+
+            <h2>Project Style</h2>
+
+            <p>Choose the visual appearance and behavior of your application:[web:1]</p>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Style</th>
+                    <th>Appearance</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td><strong>Visual Studio Style</strong></td>
+                    <td>Modern IDE-like interface with dockable panes and tabs</td>
+                    <td>Professional applications, development tools</td>
+                </tr>
+                <tr>
+                    <td><strong>MFC Standard</strong></td>
+                    <td>Classic Windows look with menu bar, toolbar, status bar</td>
+                    <td>Simple utility programs, legacy-style apps</td>
+                </tr>
+                <tr>
+                    <td><strong>Windows Explorer</strong></td>
+                    <td>Tree view on left, list view on right</td>
+                    <td>File browsers, data navigation apps</td>
+                </tr>
+                <tr>
+                    <td><strong>Office</strong></td>
+                    <td>Ribbon toolbar with tabs like Microsoft Word/Excel</td>
+                    <td>Feature-rich applications with many commands</td>
+                </tr>
+            </table>
+
+            <div class="info-box tip">
+                <strong>💡 Analogy:</strong> Think of project style like choosing a car interior:<br>
+                • Visual Studio = Modern touchscreen dashboard<br>
+                • MFC Standard = Old-school dials and knobs<br>
+                • Windows Explorer = SUV with organized storage<br>
+                • Office = Luxury car with all the controls
+            </div>
+
+            <h2>Document Template Properties</h2>
+
+            <p>For SDI and MDI applications, you can configure document properties:</p>
+
+            <ul>
+                <li><strong>File Extension</strong> - Default extension for your documents (e.g., .txt, .cfg, .dat)</li>
+                <li><strong>Document Type Name</strong> - Human-readable name for your document type</li>
+                <li><strong>Filter Name</strong> - Description shown in file dialogs</li>
+                <li><strong>File Type ID</strong> - Unique identifier for Windows registry</li>
+            </ul>
+
+            <h2>Tabbed Documents</h2>
+
+            <p>This option applies to MDI and SDI applications:[web:8]</p>
+
+            <h3>When Enabled</h3>
+            <ul>
+                <li>Multiple documents appear as tabs (like browser tabs)</li>
+                <li>Modern, clean interface</li>
+                <li>Easy navigation between documents</li>
+                <li>Similar to Visual Studio editor or Google Chrome</li>
+            </ul>
+
+            <h3>When Disabled</h3>
+            <ul>
+                <li>Classic MDI with floating child windows</li>
+                <li>Each document in its own resizable window</li>
+                <li>Traditional Windows application style</li>
+            </ul>
+
+            <div class="info-box tip">
+                <strong>💡 Recommendation:</strong> Enable Tabbed Documents for a modern user experience. Most users today are familiar with tabbed interfaces.
+            </div>
+
+            <h2>Document/View Architecture Support</h2>
+
+            <p>This is a key architectural decision for your application:[web:7][web:10]</p>
+
+            <h3>What It Does</h3>
+            <p>Separates your application into three components:</p>
+            <ul>
+                <li><strong>Document (CDocument)</strong> - Stores and manages data</li>
+                <li><strong>View (CView)</strong> - Displays data and handles user input</li>
+                <li><strong>Frame (CFrameWnd)</strong> - Contains views and manages UI</li>
+            </ul>
+
+            <h3>Benefits</h3>
+            <ul>
+                <li>Automatic file I/O support (Open, Save, Save As)</li>
+                <li>Built-in printing and print preview</li>
+                <li>Serialization for easy data persistence</li>
+                <li>Multiple views of same data</li>
+                <li>Clean separation of concerns</li>
+            </ul>
+
+            <h3>When to Enable</h3>
+            <ul>
+                <li>Your app works with documents or files</li>
+                <li>You need printing capabilities</li>
+                <li>You want multiple views of the same data</li>
+                <li>Building editors, drawing apps, or data viewers</li>
+            </ul>
+
+            <h3>When to Disable</h3>
+            <ul>
+                <li>Simple dialog-based utilities</li>
+                <li>Configuration tools</li>
+                <li>Data entry forms</li>
+                <li>Apps that don't work with documents</li>
+            </ul>
+
+            <h2>Compound Document Support</h2>
+
+            <p>This enables OLE (Object Linking and Embedding) support:[web:1]</p>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Option</th>
+                    <th>Meaning</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><strong>None</strong></td>
+                    <td>No compound document support</td>
+                    <td>Normal standalone application</td>
+                </tr>
+                <tr>
+                    <td><strong>Container</strong></td>
+                    <td>Can host objects from other apps</td>
+                    <td>Your app can display Excel sheets or Word documents</td>
+                </tr>
+                <tr>
+                    <td><strong>Mini Server</strong></td>
+                    <td>Provides small objects to other apps</td>
+                    <td>Your app creates widgets for other programs</td>
+                </tr>
+                <tr>
+                    <td><strong>Full Server</strong></td>
+                    <td>Provides full documents to other apps</td>
+                    <td>Other apps can embed your documents</td>
+                </tr>
+                <tr>
+                    <td><strong>Container/Full Server</strong></td>
+                    <td>Both hosts and provides objects</td>
+                    <td>Most powerful but most complex</td>
+                </tr>
+            </table>
+
+            <div class="info-box note">
+                <strong>📌 For Most Applications:</strong> Choose "None". Compound document support is rarely needed in modern applications and adds significant complexity.
+            </div>
+
+            <h2>User Interface Features</h2>
+
+            <p>Select which UI elements your application will include:</p>
+
+            <h3>Menu and Toolbar Options</h3>
+            <ul>
+                <li><strong>Ribbon</strong> - Modern Office-style ribbon interface</li>
+                <li><strong>Classic Menu</strong> - Traditional menu bar</li>
+                <li><strong>Toolbar</strong> - Button toolbar below menu</li>
+            </ul>
+
+            <h3>Additional UI Elements</h3>
+            <ul>
+                <li><strong>Status Bar</strong> - Information bar at bottom of window</li>
+                <li><strong>Docking Panes</strong> - Movable and dockable side panels</li>
+                <li><strong>Navigation Pane</strong> - Side panel for navigation</li>
+                <li><strong>Splitter Window</strong> - Resizable split views</li>
+            </ul>
+
+            <h2>Advanced Features</h2>
+
+            <h3>ActiveX Controls</h3>
+            <ul>
+                <li>Enable if you need to use ActiveX/COM components</li>
+                <li>Required for some third-party controls</li>
+                <li>Adds COM support to your application</li>
+            </ul>
+
+            <h3>Printing and Print Preview</h3>
+            <ul>
+                <li>Automatically enabled for Document/View applications</li>
+                <li>Adds print and print preview menu items</li>
+                <li>MFC handles most printing details for you</li>
+            </ul>
+
+            <h3>Windows Sockets</h3>
+            <ul>
+                <li>Enable for network communication</li>
+                <li>Adds Winsock initialization</li>
+                <li>Required for TCP/IP or UDP networking</li>
+            </ul>
+
+            <h2>Generated Classes</h2>
+
+            <p>Based on your selections, the wizard generates different classes:</p>
+
+            <h3>For Dialog-based Apps</h3>
+            <div class="code-box">
+                CMyApp : public CWinApp<br>
+                CMyDialog : public CDialogEx
+            </div>
+
+            <h3>For SDI/MDI Apps</h3>
+            <div class="code-box">
+                CMyApp : public CWinApp<br>
+                CMainFrame : public CFrameWnd<br>
+                CMyDoc : public CDocument<br>
+                CMyView : public CView
+            </div>
+
+            <h2>MFC Usage Options</h2>
+
+            <p>Choose how MFC libraries are linked to your application:</p>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Option</th>
+                    <th>EXE Size</th>
+                    <th>Dependencies</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td><strong>Shared DLL</strong></td>
+                    <td>Small</td>
+                    <td>Requires MFC DLLs on target system</td>
+                    <td>Most applications (recommended)</td>
+                </tr>
+                <tr>
+                    <td><strong>Static Library</strong></td>
+                    <td>Large</td>
+                    <td>No external DLLs needed</td>
+                    <td>Standalone deployment, embedded systems</td>
+                </tr>
+            </table>
+
+            <div class="info-box tip">
+                <strong>💡 Recommendation:</strong> Use Shared DLL unless you have specific deployment constraints. Modern Windows systems typically have MFC DLLs installed.
+            </div>
+
+            <h2>Resource Language</h2>
+
+            <p>Select the language for your application's resources:</p>
+            <ul>
+                <li>Determines the language of dialogs, menus, and strings</li>
+                <li>Choose based on your target audience</li>
+                <li>Can be changed later in the resource editor</li>
+            </ul>
+
+            <h2>Quick Reference Guide</h2>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>For This Type of App</th>
+                    <th>Recommended Settings</th>
+                </tr>
+                <tr>
+                    <td>Simple Utility</td>
+                    <td>Dialog-based, MFC Standard style, no Doc/View</td>
+                </tr>
+                <tr>
+                    <td>Text Editor</td>
+                    <td>SDI, Visual Studio style, Doc/View enabled</td>
+                </tr>
+                <tr>
+                    <td>Drawing Program</td>
+                    <td>SDI/MDI, Visual Studio style, Doc/View enabled, printing</td>
+                </tr>
+                <tr>
+                    <td>Industrial HMI</td>
+                    <td>Dialog-based or SDI, Visual Studio style, no compound docs</td>
+                </tr>
+                <tr>
+                    <td>Professional Tool</td>
+                    <td>SDI/MDI, Office or Visual Studio style, docking panes</td>
+                </tr>
+            </table>
+
+            <div class="button-container">
+                <a href="classes.html" class="btn-primary">Next: MFC Classes →</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is MFC? - MFC Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header will be injected here by script.js -->
+
+    <!-- Layout Container (sidebar will be injected here) -->
+    <div class="layout-container">
+        <!-- Main Content -->
+        <main class="content">
+            <h1>What is MFC?</h1>
+
+            <h2>Microsoft Foundation Class Library</h2>
+            
+            <p>MFC (Microsoft Foundation Class Library) is a C++ library created by Microsoft to make building Windows applications easier. It wraps the raw Win32 API into reusable C++ classes, making GUI and system programming faster and more manageable.[web:2][web:3]</p>
+
+            <div class="info-box tip">
+                <strong>💡 MFC = Shortcut for building Windows desktop apps using C++</strong>
+            </div>
+
+            <h2>Simple Analogy</h2>
+            
+            <p>🧒 Imagine you want to build a house (a Windows app).[web:1]</p>
+            
+            <ul>
+                <li><strong>Windows gives you bricks</strong> - the low-level Win32 API</li>
+                <li><strong>Building from scratch is hard</strong> - thousands of lines of complex code</li>
+                <li><strong>MFC gives you ready-made blocks</strong> - pre-built classes and components</li>
+            </ul>
+
+            <h2>What MFC Provides</h2>
+
+            <h3>GUI Components</h3>
+            <p>MFC provides pre-built classes for common graphical user interface elements:[web:4]</p>
+            <ul>
+                <li>Windows and dialog boxes</li>
+                <li>Buttons, edit boxes, and list controls</li>
+                <li>Menus, toolbars, and status bars</li>
+                <li>Rich text controls and tree views</li>
+                <li>Tab controls and splitter windows</li>
+            </ul>
+
+            <h3>Application Infrastructure</h3>
+            <p>MFC handles the core application structure:[web:4]</p>
+            <ul>
+                <li>Message maps for handling Windows messages easily</li>
+                <li>Document/View architecture for large applications</li>
+                <li>Serialization for automatic saving and loading</li>
+                <li>Printing and print preview support</li>
+                <li>MDI and SDI application support</li>
+            </ul>
+
+            <h3>System-Level Support</h3>
+            <p>MFC provides classes for system operations:[web:4]</p>
+            <ul>
+                <li>File handling with CFile and related classes</li>
+                <li>Thread management and synchronization</li>
+                <li>Network communication using sockets</li>
+                <li>Registry operations</li>
+                <li>COM and OLE integration</li>
+            </ul>
+
+            <h2>Common MFC Classes</h2>
+
+            <p>Instead of writing thousands of lines of Win32 API code, you use MFC classes like:[web:2][web:6]</p>
+
+            <div class="code-box">
+                <code>CDialog</code> - Dialog boxes<br>
+                <code>CWnd</code> - Base window class<br>
+                <code>CString</code> - String handling<br>
+                <code>CButton</code> - Button controls<br>
+                <code>CFile</code> - File operations<br>
+                <code>CWinApp</code> - Application initialization
+            </div>
+
+            <h2>Why MFC Hides Complexity</h2>
+
+            <p>MFC wraps complex Win32 API calls into simple, object-oriented classes. You still use C++, but MFC handles many low-level details automatically.[web:3]</p>
+
+            <div class="info-box note">
+                <strong>📌 Example:</strong> Creating a simple message box in Win32 API requires multiple parameters and understanding of Windows handles. In MFC, it's just one line:<br><br>
+                <code>AfxMessageBox(L"Hello from MFC!");</code>
+            </div>
+
+            <h2>Why Companies Still Use MFC</h2>
+
+            <p>Despite modern frameworks like WPF and .NET, MFC remains popular in specific industries:[web:1][web:3]</p>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Reason</th>
+                    <th>Explanation</th>
+                </tr>
+                <tr>
+                    <td><strong>Stability</strong></td>
+                    <td>Mature, well-tested library with decades of production use</td>
+                </tr>
+                <tr>
+                    <td><strong>Performance</strong></td>
+                    <td>Native C++ code runs fast with minimal overhead</td>
+                </tr>
+                <tr>
+                    <td><strong>Legacy Systems</strong></td>
+                    <td>Many enterprise and industrial apps built on MFC</td>
+                </tr>
+                <tr>
+                    <td><strong>Industry Use</strong></td>
+                    <td>Manufacturing, industrial automation (Honeywell, Rockwell, Siemens)</td>
+                </tr>
+                <tr>
+                    <td><strong>Maintenance</strong></td>
+                    <td>Easier to maintain existing MFC codebases</td>
+                </tr>
+            </table>
+
+            <h2>Where MFC Is Used Today</h2>
+
+            <p>MFC continues to be used in:[web:1]</p>
+            <ul>
+                <li>Industrial software and SCADA systems</li>
+                <li>Automation systems (Honeywell, Rockwell applications)</li>
+                <li>Legacy enterprise applications</li>
+                <li>Control and monitoring user interfaces</li>
+                <li>Engineering tools and utilities</li>
+                <li>Manufacturing execution systems</li>
+            </ul>
+
+            <h2>Simple Example</h2>
+
+            <p>Here's a minimal MFC application that displays a message box:[web:9]</p>
+
+            <div class="code-box">
+<pre>
+class CMyApp : public CWinApp {
+public:
+    BOOL InitInstance() {
+        AfxMessageBox(L"Hello from MFC!");
+        return TRUE;
+    }
+};
+
+CMyApp theApp;
+</pre>
+            </div>
+
+            <p>This simple example demonstrates how MFC reduces complexity. The <code>CWinApp</code> class handles application initialization, and <code>AfxMessageBox</code> displays a message without dealing with low-level Win32 details.[web:9]</p>
+
+            <div class="info-box tip">
+                <strong>💡 Key Takeaway:</strong> MFC is a C++ framework that simplifies Windows desktop application development by wrapping complex Win32 API calls into easy-to-use, object-oriented classes. It remains relevant today, especially in industrial and legacy systems.
+            </div>
+
+            <div class="button-container">
+                <a href="setup.html" class="btn-primary">Next: MFC Project Setup →</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

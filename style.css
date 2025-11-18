@@ -1,0 +1,945 @@
+/* ==============================================================
+   GLOBAL LAYOUT – Enhanced W3Schools-Inspired Modern UI
+============================================================== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  background: #f8f9fa;
+  color: #333;
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+/* ==============================================================
+   TOP NAVBAR – Enhanced Design
+============================================================== */
+.top-nav {
+  background: linear-gradient(135deg, #04AA6D 0%, #059862 100%);
+  color: #fff;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1002;
+  box-shadow: 0 4px 12px rgba(4, 170, 109, 0.15);
+}
+
+.top-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.8rem 1.6rem;
+}
+
+.top-nav h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.top-nav h1 a {
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.top-nav h1 a:hover {
+  opacity: 0.9;
+}
+
+.site-title {
+  margin: 0 !important;
+}
+
+/* MOBILE MENU BUTTON */
+.mobile-menu-btn {
+  background: none;
+  color: #fff;
+  font-size: 1.8rem;
+  border: none;
+  display: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.mobile-menu-btn:hover {
+  transform: scale(1.1);
+}
+
+/* ==============================================================
+   TOP NAV TABS – Modern Link Styling
+============================================================== */
+.top-tabs {
+  display: flex;
+  gap: 2.5rem;
+  margin-left: auto;
+  align-items: center;
+}
+
+.tab-link {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.6rem 0;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab-link:hover {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+.tab-link.active {
+  color: #fff;
+  border-bottom-color: #fff;
+  font-weight: 600;
+}
+
+/* ==============================================================
+   SIDEBAR MENU – Refined Styling with Scrollbar
+============================================================== */
+.layout-container {
+  display: flex;
+  min-height: calc(100vh - 60px);
+}
+
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #f5f7fa 0%, #eef2f7 100%);
+  border-right: 1px solid #d4dce8;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: sticky;
+  top: 60px;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: left 0.3s ease, opacity 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.02);
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar Styling */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+/* Firefox Scrollbar */
+.sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 transparent;
+}
+
+.sidebar a {
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  color: #4a5568;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: all 0.25s ease;
+  display: block;
+}
+
+.sidebar a:hover {
+  background: rgba(4, 170, 109, 0.08);
+  border-left-color: #04AA6D;
+  color: #04AA6D;
+  padding-left: 1.7rem;
+}
+
+.sidebar a.active {
+  background: linear-gradient(90deg, rgba(4, 170, 109, 0.1) 0%, transparent 100%);
+  color: #04AA6D;
+  font-weight: 600;
+  border-left-color: #04AA6D;
+}
+
+/* ==============================================================
+   MAIN CONTENT AREA
+============================================================== */
+.content {
+  flex: 1 1 auto;
+  padding: 2.8rem 3rem 7rem 3rem;
+  min-width: 0;
+  font-size: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.content h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.content h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 2.2rem 0 1.2rem 0;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.7rem;
+}
+
+.content h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 1.6rem 0 0.8rem 0;
+}
+
+.content p {
+  margin: 1rem 0;
+  line-height: 1.75;
+  color: #4a5568;
+}
+
+.content ul,
+.content ol {
+  margin: 1.2rem 0;
+  padding-left: 2rem;
+}
+
+.content li {
+  margin: 0.6rem 0;
+  color: #4a5568;
+  line-height: 1.75;
+}
+
+/* ==============================================================
+   CODE BOX STYLING
+============================================================== */
+.code-box {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 1.4rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.4rem 0;
+  font-family: "Courier New", "Monaco", monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border-left: 4px solid #04AA6D;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.code-box pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* ==============================================================
+   BUTTONS
+============================================================== */
+.btn-primary {
+  background: linear-gradient(135deg, #04AA6D 0%, #059862 100%);
+  color: #fff;
+  padding: 0.95em 2em;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(4, 170, 109, 0.25);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(4, 170, 109, 0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* ==============================================================
+   BUTTON CONTAINER
+============================================================== */
+.button-container {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e2e8f0;
+  text-align: right;
+}
+
+/* ==============================================================
+   INFO BOXES – Multiple Types
+============================================================== */
+.info-box {
+  padding: 1.2rem 1.4rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #04AA6D;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.info-box.tip {
+  background: #e7fff2;
+  border-left-color: #04AA6D;
+  color: #22543d;
+}
+
+.info-box.note {
+  background: #fef5e7;
+  border-left-color: #f39c12;
+  color: #7d6608;
+}
+
+.info-box.warning {
+  background: #fadbd8;
+  border-left-color: #e74c3c;
+  color: #78281f;
+}
+
+.info-box strong {
+  color: inherit;
+  font-weight: 700;
+}
+
+.info-box ul {
+  margin: 0.8rem 0 0 0;
+  padding-left: 2rem;
+}
+
+.info-box li {
+  margin: 0.5rem 0;
+}
+
+/* ==============================================================
+   TABLE STYLING
+============================================================== */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.6rem 0;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.comparison-table th {
+  background: linear-gradient(135deg, #04AA6D 0%, #059862 100%);
+  color: #fff;
+  padding: 1rem 1.2rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.comparison-table td {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #4a5568;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table tr:hover {
+  background: #f7fafc;
+}
+
+.comparison-table strong {
+  color: #2d3748;
+}
+
+/* ==============================================================
+   MCQ BOXES
+============================================================== */
+.mcq {
+  background: #fff;
+  border-left: 4px solid #04AA6D;
+  padding: 1.4rem;
+  margin: 1.6rem 0;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.mcq p {
+  margin: 0.8rem 0;
+}
+
+.mcq p b {
+  color: #2d3748;
+  font-weight: 700;
+}
+
+.mcq label {
+  display: block;
+  margin: 0.7rem 0;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #4a5568;
+  transition: color 0.2s ease;
+}
+
+.mcq label:hover {
+  color: #04AA6D;
+}
+
+.mcq label input[type="radio"] {
+  margin-right: 0.7rem;
+  cursor: pointer;
+}
+
+.mcq button {
+  margin-top: 1rem;
+  background: #04AA6D;
+  color: white;
+  border: none;
+  padding: 0.7em 1.4em;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.mcq button:hover {
+  background: #059862;
+  transform: translateY(-1px);
+}
+
+.answer {
+  background: #dffbea;
+  padding: 1rem 1.2rem;
+  border-left: 4px solid #04AA6D;
+  margin-top: 1rem;
+  border-radius: 3px;
+  font-weight: 600;
+  color: #146b45;
+  display: none;
+  font-size: 0.95rem;
+}
+
+/* ==============================================================
+   DIAGRAM BOX – For ASCII diagrams
+============================================================== */
+.diagram-box {
+  background: #f5f7fa;
+  border: 1px solid #d4dce8;
+  padding: 1.4rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 1.4rem 0;
+  font-family: "Courier New", "Monaco", monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #2d3748;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* ==============================================================
+   HOME PAGE – Feature Grid & Cards
+============================================================== */
+.intro-section {
+  margin-bottom: 2rem;
+}
+
+.intro-section p {
+  font-size: 1.1rem;
+  color: #4a5568;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  background: #fff;
+  padding: 1.6rem;
+  border-radius: 8px;
+  border-left: 4px solid #04AA6D;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(4, 170, 109, 0.15);
+}
+
+.feature-card h3 {
+  margin: 0 0 0.8rem 0;
+  color: #04AA6D;
+  font-size: 1.2rem;
+}
+
+.feature-card p {
+  margin: 0;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+/* ==============================================================
+   NUMBERED STEPS – Setup/Tutorial Steps
+============================================================== */
+.numbered-steps {
+  margin: 1.4rem 0;
+  padding-left: 2rem;
+}
+
+.numbered-steps li {
+  margin: 0.8rem 0;
+  color: #4a5568;
+  line-height: 1.8;
+}
+
+.numbered-steps strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* ==============================================================
+   SIMPLE LIST – Home page prerequisites
+============================================================== */
+.simple-list {
+  margin: 1.2rem 0;
+  padding-left: 2rem;
+}
+
+.simple-list li {
+  margin: 0.6rem 0;
+  color: #4a5568;
+}
+
+/* ==============================================================
+   FOOTER – Fixed positioning
+============================================================== */
+.page-footer {
+  text-align: center;
+  background: linear-gradient(180deg, #f5f7fa 0%, #eef2f7 100%);
+  padding: 0.8rem 0.6rem;
+  border-top: 2px solid #d4dce8;
+  font-size: 0.8rem;
+  position: fixed;
+  bottom: 0;
+  left: 240px;
+  width: calc(100% - 240px);
+  color: #718096;
+  font-weight: 500;
+}
+
+.page-footer p {
+  margin: 0.2rem 0;
+  line-height: 1.3;
+}
+
+.footer-quote {
+  font-style: normal;
+  color: #04AA6D;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.5px;
+  font-family: "Noto Sans Tamil", "Arial Unicode MS", sans-serif;
+}
+
+.footer-credit {
+  font-size: 0.75rem;
+  color: #718096;
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
+/* ==============================================================
+   HEADER QUOTE – Tamil Quote Styling
+============================================================== */
+.header-quote {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 0.6rem 1.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.header-quote p {
+  margin: 0;
+  font-size: 1rem;
+  font-style: normal;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  font-family: "Noto Sans Tamil", "Arial Unicode MS", sans-serif;
+}
+
+/* ==============================================================
+   RESPONSIVE DESIGN – Mobile & Tablet
+============================================================== */
+@media (max-width: 900px) {
+  .layout-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: fixed;
+    width: 70vw;
+    max-width: 280px;
+    left: -300px;
+    top: 60px;
+    height: calc(100vh - 60px);
+    max-height: calc(100vh - 60px);
+    z-index: 2000;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    overflow-y: auto;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .page-footer {
+    width: 100% !important;
+    left: 0 !important;
+  }
+
+  .content {
+    padding: 2.2rem 1.8rem 7rem 1.8rem;
+  }
+
+  .content h1 {
+    font-size: 2rem;
+  }
+
+  .content h2 {
+    font-size: 1.4rem;
+  }
+
+  .top-tabs {
+    gap: 1.5rem;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-quote p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .sidebar {
+    width: 100vw;
+    max-width: 100vw;
+    left: -100vw;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .content {
+    padding: 1.6rem 1.2rem 7rem 1.2rem;
+  }
+
+  .content h1 {
+    font-size: 1.6rem;
+  }
+
+  .content h2 {
+    font-size: 1.2rem;
+  }
+
+  .content h3 {
+    font-size: 1.1rem;
+  }
+
+  .top-nav .container {
+    padding: 0.6rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  .top-tabs {
+    gap: 1rem;
+    margin-left: auto;
+    width: 100%;
+    order: 3;
+  }
+
+  .site-title {
+    width: 100%;
+    order: 1;
+  }
+
+  .mobile-menu-btn {
+    order: 2;
+  }
+
+  .tab-link {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .code-box {
+    padding: 1rem;
+    font-size: 0.75rem;
+  }
+
+  .comparison-table {
+    font-size: 0.85rem;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.6rem 0.5rem;
+  }
+
+  .feature-card {
+    padding: 1.2rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .header-quote {
+    padding: 0.5rem 1rem;
+  }
+
+  .header-quote p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-footer {
+    font-size: 0.7rem;
+    padding: 0.5rem 0.4rem;
+  }
+
+  .footer-quote {
+    font-size: 0.75rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .footer-credit {
+    font-size: 0.65rem;
+  }
+
+  .content {
+    padding: 1rem 0.8rem 5.5rem 0.8rem;
+  }
+
+  .content h1 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .content h2 {
+    font-size: 1rem;
+    margin: 1.5rem 0 0.8rem 0;
+  }
+
+  .content h3 {
+    font-size: 0.95rem;
+    margin: 1rem 0 0.6rem 0;
+  }
+
+  .content p {
+    margin: 0.8rem 0;
+    font-size: 0.95rem;
+  }
+
+  .content ul,
+  .content ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .content li {
+    margin: 0.4rem 0;
+    font-size: 0.95rem;
+  }
+
+  .button-container {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .btn-primary {
+    padding: 0.7em 1.2em;
+    font-size: 0.85rem;
+  }
+
+  .info-box {
+    padding: 0.9rem 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-box strong {
+    font-size: 0.95rem;
+  }
+
+  .code-box {
+    padding: 0.7rem;
+    font-size: 0.7rem;
+    margin: 1rem 0;
+    border-left: 3px solid #04AA6D;
+  }
+
+  .comparison-table {
+    font-size: 0.8rem;
+    margin: 1rem 0;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.5rem 0.4rem;
+  }
+
+  .feature-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .feature-card p {
+    font-size: 0.9rem;
+  }
+
+  .mcq {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .mcq button {
+    padding: 0.6em 1.2em;
+    font-size: 0.85rem;
+  }
+
+  .numbered-steps {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .numbered-steps li {
+    margin: 0.5rem 0;
+  }
+
+  .top-nav .container {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .site-title {
+    font-size: 1.3rem;
+  }
+
+  .mobile-menu-btn {
+    font-size: 1.6rem;
+    padding: 0.3rem;
+  }
+
+  .header-quote {
+    padding: 0.4rem 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .header-quote p {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+
+  .diagram-box {
+    padding: 0.8rem;
+    font-size: 0.7rem;
+    overflow-x: auto;
+  }
+
+  .simple-list {
+    padding-left: 1.5rem;
+  }
+
+  .simple-list li {
+    margin: 0.4rem 0;
+  }
+}
+
+/* ==============================================================
+   ULTRA SMALL DEVICES – < 360px
+============================================================== */
+@media (max-width: 360px) {
+  .content {
+    padding: 0.8rem 0.6rem 5rem 0.6rem;
+  }
+
+  .content h1 {
+    font-size: 1.2rem;
+  }
+
+  .content h2 {
+    font-size: 0.95rem;
+  }
+
+  .code-box {
+    font-size: 0.65rem;
+    padding: 0.6rem;
+  }
+
+  .comparison-table {
+    font-size: 0.75rem;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 0.4rem 0.3rem;
+  }
+
+  .btn-primary {
+    padding: 0.6em 1em;
+    font-size: 0.8rem;
+  }
+}

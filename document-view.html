@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document/View Architecture - MFC Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header will be injected here by script.js -->
+
+    <!-- Layout Container (sidebar will be injected here) -->
+    <div class="layout-container">
+        <!-- Main Content -->
+        <main class="content">
+            <h1>Document/View Architecture</h1>
+
+            <p>The Document/View architecture is a design pattern in MFC that separates data management from data presentation. This separation makes applications more maintainable and flexible.[web:7][web:10]</p>
+
+            <h2>What is Document/View?</h2>
+
+            <p>Document/View is an architectural pattern that divides your application into distinct components:[web:10]</p>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Component</th>
+                    <th>Class</th>
+                    <th>Responsibility</th>
+                </tr>
+                <tr>
+                    <td><strong>Document</strong></td>
+                    <td>CDocument</td>
+                    <td>Stores and manages application data</td>
+                </tr>
+                <tr>
+                    <td><strong>View</strong></td>
+                    <td>CView</td>
+                    <td>Displays data and handles user input</td>
+                </tr>
+                <tr>
+                    <td><strong>Frame</strong></td>
+                    <td>CFrameWnd</td>
+                    <td>Contains views and manages UI elements</td>
+                </tr>
+                <tr>
+                    <td><strong>Application</strong></td>
+                    <td>CWinApp</td>
+                    <td>Manages documents and application lifecycle</td>
+                </tr>
+            </table>
+
+            <h2>Architecture Diagram</h2>
+
+            <div class="diagram-box">
+<pre>
+┌─────────────────────────────────────────┐
+│          CWinApp (Application)          │
+│      Manages document templates         │
+└──────────────┬──────────────────────────┘
+               │
+               ↓
+┌──────────────────────────────────────────┐
+│      CFrameWnd (Main Window Frame)       │
+│   Contains toolbar, menu, status bar     │
+└──────────────┬───────────────────────────┘
+               │
+               ↓
+┌──────────────────────────────────────────┐
+│         CView (Display/Interaction)      │
+│      • OnDraw() - Renders data           │
+│      • Handles user input                │
+│      • Calls GetDocument()               │
+└──────────────┬───────────────────────────┘
+               │
+               ↓
+┌──────────────────────────────────────────┐
+│        CDocument (Data Storage)          │
+│      • Holds application data            │
+│      • Serialize() - Save/Load           │
+│      • UpdateAllViews() - Notify views   │
+└──────────────────────────────────────────┘
+</pre>
+            </div>
+
+            <h2>Why Use Document/View?</h2>
+
+            <h3>Benefits</h3>
+            <ul>
+                <li><strong>Separation of Concerns</strong> - Data logic separate from UI logic[web:10]</li>
+                <li><strong>Multiple Views</strong> - Display same data in different ways</li>
+                <li><strong>Automatic File I/O</strong> - Built-in Open, Save, Save As commands</li>
+                <li><strong>Serialization Support</strong> - Easy data persistence[web:7]</li>
+                <li><strong>Printing Support</strong> - Automatic print and print preview[web:10]</li>
+                <li><strong>Undo/Redo Framework</strong> - Easier to implement</li>
+            </ul>
+
+            <h3>Ideal Use Cases</h3>
+            <ul>
+                <li>Text editors (like Notepad or Word processors)</li>
+                <li>Drawing and CAD applications</li>
+                <li>SCADA and HMI display editors</li>
+                <li>Spreadsheet applications</li>
+                <li>Data visualization tools</li>
+                <li>Any application that works with documents or files</li>
+            </ul>
+
+            <h2>The Document Class</h2>
+
+            <p>The Document class (derived from CDocument) manages your application's data:[web:10]</p>
+
+            <div class="code-box">
+<pre>
+class CMyDoc : public CDocument {
+protected:
+    CString m_data;
+    CArray&lt;CPoint, CPoint&amp;&gt; m_points;
+
+public:
+    // Called when creating new document
+    virtual BOOL OnNewDocument();
+    
+    // Called when opening existing document
+    virtual BOOL OnOpenDocument(LPCTSTR lpszPathName);
+    
+    // Save/load document data
+    virtual void Serialize(CArchive& ar);
+    
+    // Clean up document data
+    virtual void DeleteContents();
+    
+    // Mark document as modified
+    void SetModifiedFlag(BOOL bModified = TRUE);
+    
+    // Notify all views to update
+    void UpdateAllViews(CView* pSender, LPARAM lHint = 0L);
+};
+</pre>
+            </div>
+
+            <h3>Key Document Methods</h3>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Method</th>
+                    <th>Purpose</th>
+                    <th>When Called</th>
+                </tr>
+                <tr>
+                    <td>OnNewDocument()</td>
+                    <td>Initialize new document</td>
+                    <td>File → New</td>
+                </tr>
+                <tr>
+                    <td>OnOpenDocument()</td>
+                    <td>Load existing document</td>
+                    <td>File → Open</td>
+                </tr>
+                <tr>
+                    <td>Serialize()</td>
+                    <td>Save or load data</td>
+                    <td>File → Save/Open</td>
+                </tr>
+                <tr>
+                    <td>DeleteContents()</td>
+                    <td>Clear document data</td>
+                    <td>Before loading new data</td>
+                </tr>
+                <tr>
+                    <td>SetModifiedFlag()</td>
+                    <td>Mark document changed</td>
+                    <td>After user edits data</td>
+                </tr>
+                <tr>
+                    <td>UpdateAllViews()</td>
+                    <td>Refresh all views</td>
+                    <td>After data changes</td>
+                </tr>
+            </table>
+
+            <h2>The View Class</h2>
+
+            <p>The View class (derived from CView) displays document data and handles user interaction:[web:10]</p>
+
+            <div class="code-box">
+<pre>
+class CMyView : public CView {
+public:
+    // Get pointer to associated document
+    CMyDoc* GetDocument() const;
+    
+    // Draw the document data
+    virtual void OnDraw(CDC* pDC);
+    
+    // Called when view is first displayed
+    virtual void OnInitialUpdate();
+    
+    // Called when document data changes
+    virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
+    
+    // Handle user input
+    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+};
+</pre>
+            </div>
+
+            <h3>Key View Methods</h3>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Method</th>
+                    <th>Purpose</th>
+                    <th>Usage</th>
+                </tr>
+                <tr>
+                    <td>OnDraw()</td>
+                    <td>Render document data</td>
+                    <td>All drawing code goes here</td>
+                </tr>
+                <tr>
+                    <td>OnInitialUpdate()</td>
+                    <td>Initialize view</td>
+                    <td>Setup view when first created</td>
+                </tr>
+                <tr>
+                    <td>OnUpdate()</td>
+                    <td>Respond to data changes</td>
+                    <td>Refresh display when document changes</td>
+                </tr>
+                <tr>
+                    <td>GetDocument()</td>
+                    <td>Access document data</td>
+                    <td>Retrieve document pointer</td>
+                </tr>
+            </table>
+
+            <h2>How They Work Together</h2>
+
+            <h3>Data Flow Example</h3>
+
+            <div class="info-box note">
+                <strong>📌 Scenario:</strong> User clicks in the view to add a point to a drawing application
+            </div>
+
+            <div class="code-box">
+<pre>
+// 1. View receives mouse click
+void CMyView::OnLButtonDown(UINT nFlags, CPoint point) {
+    // 2. Get document
+    CMyDoc* pDoc = GetDocument();
+    
+    // 3. Modify document data
+    pDoc->AddPoint(point);
+    
+    // 4. Mark document as modified
+    pDoc->SetModifiedFlag();
+    
+    // 5. Update all views
+    pDoc->UpdateAllViews(NULL);
+}
+
+// 6. Document notifies all views to update
+void CMyView::OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint) {
+    // 7. Invalidate view to trigger redraw
+    Invalidate();
+}
+
+// 8. View redraws itself
+void CMyView::OnDraw(CDC* pDC) {
+    CMyDoc* pDoc = GetDocument();
+    
+    // 9. Get data from document and draw
+    const CArray&lt;CPoint&gt;&amp; points = pDoc->GetPoints();
+    for (int i = 0; i &lt; points.GetSize(); i++) {
+        pDC->Ellipse(points[i].x - 5, points[i].y - 5,
+                     points[i].x + 5, points[i].y + 5);
+    }
+}
+</pre>
+            </div>
+
+            <h2>Serialization</h2>
+
+            <p>Serialization is the process of saving and loading document data. MFC makes this easy:[web:7]</p>
+
+            <div class="code-box">
+<pre>
+void CMyDoc::Serialize(CArchive& ar) {
+    if (ar.IsStoring()) {
+        // Saving to file
+        ar << m_data;
+        ar << m_points.GetSize();
+        for (int i = 0; i < m_points.GetSize(); i++) {
+            ar << m_points[i];
+        }
+    }
+    else {
+        // Loading from file
+        ar >> m_data;
+        int count;
+        ar >> count;
+        m_points.SetSize(count);
+        for (int i = 0; i < count; i++) {
+            ar >> m_points[i];
+        }
+    }
+}
+</pre>
+            </div>
+
+            <h3>Serialization Features</h3>
+            <ul>
+                <li>Automatic file extension association</li>
+                <li>Built-in file Open/Save dialogs</li>
+                <li>Recent file list management</li>
+                <li>Modified document tracking</li>
+                <li>Prompt to save on exit</li>
+            </ul>
+
+            <h2>Multiple Views</h2>
+
+            <p>One powerful feature is displaying the same document in multiple views:[web:10]</p>
+
+            <div class="diagram-box">
+<pre>
+           ┌─────────────┐
+           │  CDocument  │
+           │    (Data)   │
+           └──────┬──────┘
+                  │
+        ┌─────────┼─────────┐
+        │         │         │
+   ┌────▼───┐ ┌──▼────┐ ┌──▼────┐
+   │ View 1 │ │View 2 │ │View 3 │
+   │ (List) │ │(Graph)│ │(Table)│
+   └────────┘ └───────┘ └───────┘
+</pre>
+            </div>
+
+            <p><strong>Example Use Cases:</strong></p>
+            <ul>
+                <li>Spreadsheet: Grid view and chart view of same data</li>
+                <li>Text editor: Edit view and preview view</li>
+                <li>CAD: 2D view and 3D view of same model</li>
+            </ul>
+
+            <h2>Frame Window Role</h2>
+
+            <p>The Frame window (CFrameWnd) contains the view and UI elements:[web:4]</p>
+
+            <div class="code-box">
+<pre>
+class CMainFrame : public CFrameWnd {
+public:
+    CMainFrame();
+    
+protected:
+    CToolBar m_wndToolBar;
+    CStatusBar m_wndStatusBar;
+    
+    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+    virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+    
+    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+};
+</pre>
+            </div>
+
+            <p><strong>Frame Responsibilities:</strong></p>
+            <ul>
+                <li>Hosts the view window</li>
+                <li>Manages toolbar and status bar</li>
+                <li>Handles menu commands</li>
+                <li>Controls window layout</li>
+                <li>Manages docking panes</li>
+            </ul>
+
+            <h2>Document Templates</h2>
+
+            <p>Document templates connect documents, views, and frames:[web:10]</p>
+
+            <div class="code-box">
+<pre>
+BOOL CMyApp::InitInstance() {
+    // Create document template
+    CSingleDocTemplate* pDocTemplate;
+    pDocTemplate = new CSingleDocTemplate(
+        IDR_MAINFRAME,
+        RUNTIME_CLASS(CMyDoc),      // Document class
+        RUNTIME_CLASS(CMainFrame),   // Frame class
+        RUNTIME_CLASS(CMyView));     // View class
+    
+    AddDocTemplate(pDocTemplate);
+    
+    // Parse command line and open/create document
+    CCommandLineInfo cmdInfo;
+    ParseCommandLine(cmdInfo);
+    ProcessShellCommand(cmdInfo);
+    
+    return TRUE;
+}
+</pre>
+            </div>
+
+            <h2>SDI vs MDI</h2>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Feature</th>
+                    <th>SDI (Single Document)</th>
+                    <th>MDI (Multiple Document)</th>
+                </tr>
+                <tr>
+                    <td><strong>Template Class</strong></td>
+                    <td>CSingleDocTemplate</td>
+                    <td>CMultiDocTemplate</td>
+                </tr>
+                <tr>
+                    <td><strong>Documents Open</strong></td>
+                    <td>One at a time</td>
+                    <td>Multiple simultaneously</td>
+                </tr>
+                <tr>
+                    <td><strong>Window Style</strong></td>
+                    <td>Like Notepad</td>
+                    <td>Like old Excel</td>
+                </tr>
+                <tr>
+                    <td><strong>Frame Class</strong></td>
+                    <td>CFrameWnd</td>
+                    <td>CMDIFrameWnd / CMDIChildWnd</td>
+                </tr>
+            </table>
+
+            <h2>Best Practices</h2>
+
+            <div class="info-box tip">
+                <strong>💡 Document/View Tips:</strong>
+                <ul>
+                    <li>Keep UI code in View, data logic in Document</li>
+                    <li>Always call UpdateAllViews() after modifying document data</li>
+                    <li>Use SetModifiedFlag() to track unsaved changes</li>
+                    <li>Implement Serialize() for automatic file handling</li>
+                    <li>Don't store pointers to views in documents (they may change)</li>
+                </ul>
+            </div>
+
+            <h2>When NOT to Use Document/View</h2>
+
+            <p>Document/View adds complexity. Don't use it for:[web:7]</p>
+            <ul>
+                <li>Simple dialog-based utilities</li>
+                <li>Configuration tools</li>
+                <li>Apps that don't work with files</li>
+                <li>Real-time monitoring dashboards</li>
+                <li>Simple data entry forms</li>
+            </ul>
+
+            <p>For these cases, use a dialog-based application instead.</p>
+
+            <div class="button-container">
+                <a href="ui-elements.html" class="btn-primary">Next: UI Elements →</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
